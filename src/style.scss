@@ -1,0 +1,46 @@
+/* Style the navigation bar */
+.navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+  }
+
+  /* Navbar item */
+  .navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    padding-right: 0.4rem;
+    width: 5rem;
+
+    transition: all 0.5s ease;
+  }
+  
+  /* Navbar items on mouse-over */
+  .navbar a:hover {
+    cursor: pointer;
+    background-color: #9933ff;
+    width: 6rem;
+    
+    transition: all 0.5s ease;
+  }
+  
+  /* Current/active navbar link */
+  .active {
+    background-color: #9900ff;
+  }
+  
+  /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+  @media screen and (max-width: 500px) {
+    .navbar a{
+      float: none;
+      display: block;
+      width: auto;
+    }
+    .navbar a:hover {
+      width: auto;
+    }
+  }
