@@ -14,7 +14,7 @@
   text-decoration: none;
   font-size: 17px;
   padding-right: 0.4rem;
-  width: 5rem;
+  width: 6rem;
   transition: all 0.5s ease;
 }
 
@@ -22,7 +22,7 @@
 .navbar a:hover {
   cursor: pointer;
   background-color: #9933ff;
-  width: 6rem;
+  width: 7rem;
   transition: all 0.5s ease;
 }
 
