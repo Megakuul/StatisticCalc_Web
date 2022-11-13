@@ -77,16 +77,39 @@ body {
 
   .val {
     float: right;
-    padding-top: 2rem;
-    padding-right: 6rem;
+    margin-top: 3rem;
+    margin-right: 5%;
+    padding-right: 12%;
+    border: 3px solid #555;
+    border-radius: 25px;
+    background-color: rgba(255,255,255,0.1);
   }
 
   .val .val-title {
-
+    padding-left: 2rem;
+    padding-top: 0.8rem;
   }
 
   .val .val-list {
-    
+    list-style-type: none;
+    padding-left: 2.2rem;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+
+  //Hide scrollbar for Chrome/Safari/Opera
+  .val .val-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  //Hide scrollbar for IE/Edge/Firefox
+  .val .val-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .val .val-list li {
+
   }
   
   /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */

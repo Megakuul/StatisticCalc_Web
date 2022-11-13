@@ -5,7 +5,7 @@ const remove_class = "removevalue";
 const navbar_class = "navbar";
 const navitem_class = "navitem";
 const active_class = "active";
-let valueList;
+let valueList = [];
 let currentActive = document.getElementsByClassName(active_class)[0];
 initEventListeners();
 function initEventListeners() {
@@ -30,6 +30,9 @@ function initEventListeners() {
         if (event.target == document.getElementById(removeBx_id))
             document.getElementById(removeBx_id).style.display = "none";
     });
+    document.getElementById("knopf").addEventListener("click", function () {
+        addValueToList(50, 5);
+    });
 }
 function showDialog(id) {
     return function () {
@@ -49,5 +52,31 @@ function setActive(element) {
         }
         element.classList.add(active_class);
     };
+}
+function addValueToList(value, count) {
+    if (!isNaN(value)) {
+        for (let i = 0; i < count; i++) {
+            valueList.push(value);
+            document.getElementById("valueList").innerHTML += `<li>${value}</li>`;
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function removeValueFromList(value, count) {
+    if (!isNaN(value)) {
+        for (let i = 0; i < count; i++) {
+            const index = valueList.indexOf(value);
+            if (index > -1) {
+                valueList.splice(index, 1);
+            }
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 //# sourceMappingURL=script.js.map
