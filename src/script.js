@@ -30,8 +30,11 @@ function initEventListeners() {
         if (event.target == document.getElementById(removeBx_id))
             document.getElementById(removeBx_id).style.display = "none";
     });
-    document.getElementById("knopf").addEventListener("click", function () {
+    document.getElementById("Knopf").addEventListener("click", function () {
         addValueToList(50, 5);
+    });
+    document.getElementById("entfernknopf").addEventListener("click", function () {
+        removeValueFromList(50, 5);
     });
 }
 function showDialog(id) {
@@ -57,8 +60,8 @@ function addValueToList(value, count) {
     if (!isNaN(value)) {
         for (let i = 0; i < count; i++) {
             valueList.push(value);
-            document.getElementById("valueList").innerHTML += `<li>${value}</li>`;
         }
+        rewrapList();
         return true;
     }
     else {
@@ -73,10 +76,18 @@ function removeValueFromList(value, count) {
                 valueList.splice(index, 1);
             }
         }
+        rewrapList();
         return true;
     }
     else {
         return false;
+    }
+}
+function rewrapList() {
+    let list = document.getElementById("valueList");
+    list.innerHTML = "";
+    for (let i = 0; i < valueList.length; i++) {
+        list.innerHTML += `<li class="${valueList[i]}">${valueList[i]}</li>`;
     }
 }
 //# sourceMappingURL=script.js.map

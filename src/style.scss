@@ -9,7 +9,7 @@ body {
 }
 
 /* Style the navigation bar */
-.navbar {
+  .navbar {
     width: 100%;
     background-color: #555;
     overflow: auto;
@@ -75,42 +75,90 @@ body {
     
   }
 
+  .dialogbox .dialogbox-content input {
+    display: block;
+    margin: 0;
+    color: #455A64;
+    width: 100%;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.4rem;
+    line-height: 1.8;
+    font-size: 1.6rem;
+    transition: box-shadow 300ms;
+  }
+
+  .dialogbox .dialogbox-content input::placeholder {
+    color: #B0BEC5;
+  }
+
+  .dialogbox .dialogbox-content input:focus {
+    outline: none;
+    box-shadow: 0.2rem 0.8rem 1.6rem #5e35b1;
+  }
+
   .val {
     float: right;
     margin-top: 3rem;
-    margin-right: 5%;
-    padding-right: 12%;
+    margin-right: 3%;
+    padding-right: 16%;
+    height: 70%;
+    width: 10%;
     border: 3px solid #555;
     border-radius: 25px;
     background-color: rgba(255,255,255,0.1);
+    overflow: hidden;
+    overflow-y: scroll;
   }
 
   .val .val-title {
     padding-left: 2rem;
-    padding-top: 0.8rem;
+    padding-top: 0.4rem;
+
+    font-family: 'Titan One', cursive;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.6);
+    filter: blur(0.4px);
   }
 
   .val .val-list {
     list-style-type: none;
     padding-left: 2.2rem;
+    width: 220%;
+  }
+
+  .val .val-list li {
+    padding-left: 0.5rem;
+    padding-top: 3px;
+    padding-bottom: 3px;
     overflow: hidden;
-    overflow-y: scroll;
+
+    font-family: sans-serif;
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    filter: blur(0.4px);
+    transition: all ease-out 0.5s;
+  }
+
+  .val .val-list li:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 25px;
+    transition: all ease-in 0.5s;
   }
 
   //Hide scrollbar for Chrome/Safari/Opera
-  .val .val-list::-webkit-scrollbar {
+  .val::-webkit-scrollbar {
     display: none;
   }
 
   //Hide scrollbar for IE/Edge/Firefox
-  .val .val-list {
+  .val {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  .val .val-list li {
-
-  }
+  
   
   /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
   @media screen and (max-width: 500px) {
