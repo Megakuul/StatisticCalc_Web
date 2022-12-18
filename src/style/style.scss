@@ -11,11 +11,11 @@ body {
 /* Style the navigation bar */
   .navbar {
     width: 100%;
-    background-color: #555;
+    background-color: rgba(0,0,0,0.3);
     overflow: auto;
+    border-radius: 12px;
   }
 
-  /* Navbar item */
   .navbar .navitem {
     float: left;
     text-align: center;
@@ -33,7 +33,6 @@ body {
     float: right;
   }
   
-  /* Navbar items on mouse-over */
   .navbar .navitem:hover {
     cursor: pointer;
     background-color: rgba(255,255,255,0.15);
@@ -41,13 +40,13 @@ body {
     
     transition: all 0.5s ease;
   }
-  
-  /* Current/active navbar link */
   .active {
     background-color: rgba(255,255,255,0.1);
   }
+/* Style the navigation bar */
 
 
+/* Dialog Box */
   .dialogbox {
     display: none; 
     position: fixed; 
@@ -74,29 +73,95 @@ body {
     overflow: auto;
     
   }
-
-  .dialogbox .dialogbox-content input {
+  .dialogbox .dialogbox-content .textbox {
     display: block;
     margin: 0;
     color: #455A64;
-    width: 100%;
+    width: 60%;
     font-family: inherit;
     border: none;
     border-radius: 0.4rem;
     line-height: 1.8;
     font-size: 1.6rem;
+    font-family: 'Titan One', cursive;
+    text-align: center;
     transition: box-shadow 300ms;
   }
-
-  .dialogbox .dialogbox-content input::placeholder {
+  .dialogbox .dialogbox-content .textbox::placeholder {
     color: #B0BEC5;
   }
-
-  .dialogbox .dialogbox-content input:focus {
+  .dialogbox .dialogbox-content .textbox:focus {
     outline: none;
-    box-shadow: 0.2rem 0.8rem 1.6rem #5e35b1;
+    box-shadow: 0.2rem 0.8rem 1.6rem rgba(0,0,0,0.3);
   }
 
+  .dialogbox .dialogbox-content .title {
+    font-family: 'Titan One', cursive;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.6);
+  }
+
+  $slider_pointer_size: 25px;
+  $slider_pointer_background: #4776E6;
+  $slider_pointer_border_radius: 9px;
+
+  .dialogbox .dialogbox-content .slider {
+    appearance: none;
+    margin-top: 3rem;
+    height: ($slider_pointer_size)-10px;
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 12px;
+    width: 60%;
+    cursor: pointer;
+  }
+
+  .dialogbox .dialogbox-content .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: $slider_pointer_size;
+    height: $slider_pointer_size;
+    border-radius: $slider_pointer_border_radius; 
+    background: $slider_pointer_background;
+  }
+
+  .dialogbox .dialogbox-content .slider::-moz-range-thumb {
+    width: $slider_pointer_size;
+    height: $slider_pointer_size;
+    border-radius: $slider_pointer_border_radius;
+    background: $slider_pointer_background;
+  }
+
+  .dialogbox .dialogbox-content .countr {
+    font-family: 'Titan One', cursive;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .dialogbox .dialogbox-content button {
+    font-family: 'Titan One', cursive;
+    font-size: 25px;
+
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background-color: rgba(50,205,50,0.5);
+    color: rgba(255,255,255,0.6);
+    height: 3rem;
+    width: 60%;
+    border-radius: 10px;
+    border-width: 0;
+
+    transition: all ease 0.5s;
+  }
+
+  .dialogbox .dialogbox-content button:hover {
+    color: rgba(255,255,255,0.8);
+    background-color: rgba(50,205,50,0.8);
+  }
+
+/* Dialog Box */
+
+
+/* Value Block */
   .val {
     float: right;
     margin-top: 3rem;
@@ -110,64 +175,57 @@ body {
     overflow: hidden;
     overflow-y: scroll;
   }
-
   .val .val-title {
     padding-left: 2rem;
     padding-top: 0.4rem;
-
     font-family: 'Titan One', cursive;
     font-size: 25px;
     font-weight: bold;
     color: rgba(255,255,255,0.6);
     filter: blur(0.4px);
   }
-
   .val .val-list {
     list-style-type: none;
     padding-left: 2.2rem;
     width: 220%;
   }
-
   .val .val-list li {
     padding-left: 0.5rem;
     padding-top: 3px;
     padding-bottom: 3px;
     overflow: hidden;
-
     font-family: sans-serif;
     font-size: 16px;
     color: rgba(255,255,255,0.6);
     filter: blur(0.4px);
     transition: all ease-out 0.5s;
   }
-
   .val .val-list li:hover {
     background-color: rgba(255,255,255,0.1);
     border-radius: 25px;
     transition: all ease-in 0.5s;
   }
-
   //Hide scrollbar for Chrome/Safari/Opera
   .val::-webkit-scrollbar {
     display: none;
   }
-
   //Hide scrollbar for IE/Edge/Firefox
   .val {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
 
-  
-  
-  /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
-  @media screen and (max-width: 500px) {
-    .navbar .navitem{
-      float: none;
-      display: block;
-      width: auto;
-    }
-    .navbar .navitem:hover {
-      width: auto;
-    }
+/* Value Block */
+
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+  .navbar .navitem{
+    float: none;
+    display: block;
+    width: auto;
   }
+  .navbar .navitem:hover {
+    width: auto;
+  }
+}

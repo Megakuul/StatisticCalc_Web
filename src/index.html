@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <script type="module" src="dist/script.js"></script>
 
     <title>Statistic Calculator</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
@@ -28,7 +28,10 @@
         <div id="addBx-dialog" class="dialogbox-content">
             <center>
                 <p class="title">Add value</p>
-                <input type="text" placeholder="enter value"></input>
+                <input class="textbox" type="number" placeholder="enter value"></input>
+                <input id="addSlider" class="slider" type="range" min="1" max="100" value="1">
+                <p id="addCountr" class="countr">Count: 1</p>
+                <button id="addConfBtn">Confirm</button>
             </center>
         </div>
     </div>
@@ -38,6 +41,9 @@
             <center>
                 <p class="title">Remove value</p>
                 <input class="textbox" type="number" placeholder="enter value"></input>
+                <input id="remSlider" class="slider" type="range" min="1" max="100" value="1"></input>
+                <p id="remCountr" class="countr">Count: 1</p>
+                <button id="rmConfBtn">Confirm</button>
             </center>
         </div>
     </div>

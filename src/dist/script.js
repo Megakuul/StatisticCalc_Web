@@ -23,12 +23,14 @@ function initEventListeners() {
         removeValueElements.item(i).addEventListener("click", showDialog(removeBx_id));
     }
     window.addEventListener("click", function (event) {
-        if (event.target == document.getElementById(addBx_id))
+        if (event.target == document.getElementById(addBx_id)) {
             document.getElementById(addBx_id).style.display = "none";
+        }
     });
     window.addEventListener("click", function (event) {
-        if (event.target == document.getElementById(removeBx_id))
+        if (event.target == document.getElementById(removeBx_id)) {
             document.getElementById(removeBx_id).style.display = "none";
+        }
     });
     document.getElementById("Knopf").addEventListener("click", function () {
         addValueToList(50, 5);
@@ -54,6 +56,7 @@ function setActive(element) {
             navbar.item(i).classList.remove(active_class);
         }
         element.classList.add(active_class);
+        currentActive = element;
     };
 }
 function addValueToList(value, count) {
