@@ -28,7 +28,7 @@
         <div id="addBx-dialog" class="dialogbox-content">
             <center>
                 <p class="title">Add value</p>
-                <input class="textbox" type="number" placeholder="enter value"></input>
+                <input id="addValBx" class="textbox" type="number" placeholder="enter value"></input>
                 <input id="addSlider" class="slider" type="range" min="1" max="100" value="1">
                 <p id="addCountr" class="countr">Count: 1</p>
                 <button id="addConfBtn">Confirm</button>
@@ -40,20 +40,17 @@
         <div id="removeBx-dialog" class="dialogbox-content">
             <center>
                 <p class="title">Remove value</p>
-                <input class="textbox" type="number" placeholder="enter value"></input>
+                <input id="remValBx" class="textbox" type="number" placeholder="enter value"></input>
                 <input id="remSlider" class="slider" type="range" min="1" max="100" value="1"></input>
                 <p id="remCountr" class="countr">Count: 1</p>
-                <button id="rmConfBtn">Confirm</button>
+                <button id="remConfBtn">Confirm</button>
             </center>
         </div>
     </div>
 
     <div class="val">
         <p class="val-title">Valuelist</p>
-        <ul id="valueList" class="val-list">
-            <li>Halloassdfgsdfgsdfgssdsfsdfgsdfgsdfgsdasdfasfdfgddfasdfasdfasf</li>
-            <li>Tschüss</li>
-        </ul>
+        <ul id="valueList" class="val-list"></ul>
     </div>
 
     
