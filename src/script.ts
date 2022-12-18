@@ -1,3 +1,5 @@
+import * as Chart from 'chart.js';
+
 const addBx         = <HTMLDivElement>$("addBx");
 const removeBx      = <HTMLDivElement>$("removeBx");
 const addValBx      = <HTMLInputElement>$("addValBx");
@@ -8,6 +10,8 @@ const addCountLbl   = <HTMLParagraphElement>$("addCountr");
 const remCountLbl   = <HTMLParagraphElement>$("remCountr");
 const addConfBtn    = <HTMLButtonElement>$("addConfBtn");
 const remConfBtn    = <HTMLButtonElement>$("remConfBtn");
+const mainChart     = <HTMLCanvasElement>$("mainChart");
+const clearListBtn  = $("clearListBtn");
  
 const add_class = "addvalue";
 const remove_class = "removevalue";
@@ -81,6 +85,11 @@ function initEventListeners() {
         if (!removeValueFromList(remValBx.value, remSlider.value))
             return;
         resetDialog(remSlider, remValBx, remCountLbl);
+    });
+
+    clearListBtn.addEventListener("click", function() {
+        valueList = [];
+        rewrapList();
     });
 }
 
@@ -157,4 +166,29 @@ function rewrapList() {
     for (let i = 0; i < valueList.length; i++) {
         list.innerHTML += `<li class="${valueList[i]}">${valueList[i]}</li>`;
     }
+}
+
+function createChart() {
+    return new Chart("myChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{ 
+            data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+            borderColor: "red",
+            fill: false
+          }, { 
+            data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+            borderColor: "green",
+            fill: false
+          }, { 
+            data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+            borderColor: "blue",
+            fill: false
+          }]
+        },
+        options: {
+          legend: {display: false}
+        }
+    });
 }

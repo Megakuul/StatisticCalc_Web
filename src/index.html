@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="style/style.css">
     <script type="module" src="dist/script.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
     <title>Statistic Calculator</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
 </head>
@@ -48,8 +50,10 @@
         </div>
     </div>
 
+    <canvas id="mainChart" class="chart"></canvas>
+
     <div class="val">
-        <p class="val-title">Valuelist</p>
+        <p class="val-title">Valuelist <i id="clearListBtn" class="fa fa-solid fa-trash"></i></p>
         <ul id="valueList" class="val-list"></ul>
     </div>
 
