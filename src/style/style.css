@@ -234,9 +234,9 @@ body {
 
 /* Value Block */
 /* Chart */
-.chart {
+#mainChart {
   width: 30%;
-  max-width: 600px;
+  max-width: 900px;
 }
 
 /* Chart */
@@ -257,5 +257,9 @@ body {
     margin-right: 0;
     height: 70%;
     width: auto;
+  }
+  .chart {
+    float: none;
+    width: 900px;
   }
 }/*# sourceMappingURL=style.css.map */
