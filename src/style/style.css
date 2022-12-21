@@ -46,6 +46,7 @@ body {
 
 /* Style the navigation bar */
 /* Dialog Box */
+/*This one is basically the background (the blurry thing on the screen)*/
 .dialogbox {
   display: none;
   position: fixed;
@@ -61,6 +62,7 @@ body {
   -webkit-backdrop-filter: blur(1px);
 }
 
+/*And this is the real dialogbox*/
 .dialogbox .dialogbox-content {
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(4px);
@@ -70,6 +72,7 @@ body {
   border-radius: 20px;
   width: 25%;
   overflow: auto;
+  transition: all ease 1s;
 }
 
 .dialogbox .dialogbox-content .textbox {
@@ -167,11 +170,7 @@ body {
 /* Dialog Box */
 /* Value Block */
 .val {
-  float: right;
-  margin-top: 3rem;
-  margin-right: 3%;
-  padding-right: 6%;
-  height: 70%;
+  height: 800px;
   width: 20%;
   border: 3px solid #555;
   border-radius: 25px;
@@ -235,11 +234,21 @@ body {
 /* Value Block */
 /* Chart */
 #mainChart {
-  width: 30%;
-  max-width: 900px;
+  display: block;
+  width: 60%;
+  height: auto;
+  max-width: 60%;
 }
 
 /* Chart */
+/* Main Row */
+#mainRow {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+/* Main Row */
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
 @media screen and (max-width: 500px) {
   .navbar .navitem {
@@ -253,13 +262,21 @@ body {
 }
 @media screen and (max-width: 900px) {
   .val {
-    float: none;
-    margin-right: 0;
-    height: 70%;
+    margin-top: 3rem;
+    margin: 10px;
+    height: 500px;
     width: auto;
   }
-  .chart {
-    float: none;
-    width: 900px;
+  .dialogbox .dialogbox-content {
+    width: 50%;
+    transition: all ease 1s;
+  }
+  #mainChart {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+  #mainRow {
+    display: block;
   }
 }/*# sourceMappingURL=style.css.map */

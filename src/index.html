@@ -19,7 +19,7 @@
     
     <a class="navitem addvalue"><i class="fa fa-fw fa-plus-circle"></i> Add</a>
     <a class="navitem removevalue"><i class="fa fa-fw fa-minus-circle"></i> Remove</a>
-    <a class="navitem right"><i class="fa fa-fw fa-coffee"></i> About</a>
+    <a class="navitem right" href="about.html"><i class="fa fa-fw fa-coffee"></i> About</a>
 </div>
 
 <body>
@@ -48,14 +48,16 @@
         </div>
     </div>
 
-    <canvas id="mainChart" class="chart"></canvas>
+    <div id="mainRow">
+        <canvas id="mainChart"></canvas>
     
-    <div class="val">
-        <p class="val-title">Valuelist <i id="clearListBtn" class="fa fa-solid fa-trash"></i></p>
-        <ul id="valueList" class="val-list"></ul>
+        <div class="val">
+            <p class="val-title">Valuelist <i id="clearListBtn" class="fa fa-solid fa-trash"></i></p>
+            <ul id="valueList" class="val-list"></ul>
+        </div>     
     </div>
 
-    
+      
 </body>
 
 
