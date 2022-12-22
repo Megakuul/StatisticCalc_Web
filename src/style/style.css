@@ -234,9 +234,8 @@ body {
 /* Value Block */
 /* Chart */
 #mainChart {
-  display: block;
   width: 60%;
-  height: auto;
+  height: 50%;
   max-width: 60%;
 }
 

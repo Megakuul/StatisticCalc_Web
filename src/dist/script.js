@@ -17,7 +17,12 @@ const remove_class = "removevalue";
 const navbar_class = "navbar";
 const navitem_class = "navitem";
 const active_class = "active";
-let valueListY = [];
+const valueListCookie = "valueList";
+let valueListY = JSON.parse(getCookie(valueListCookie)) || [];
+function changeValueList(newValue) {
+    setCookie(valueListCookie, JSON.stringify(newValue));
+    valueListY = JSON.parse(getCookie(valueListCookie)) || [];
+}
 let valueListX = [];
 let currentActive = $$(active_class)[0];
 //Chart------------------------------------------------------------------//
@@ -25,13 +30,39 @@ const chart = new Chart(mainChart, {
     type: "line",
     data: {
         labels: [],
-        datasets: [{
+        datasets: [
+            {
                 label: "Values",
                 data: [],
                 borderColor: 'rgba(255, 255, 255, 0.8)',
                 borderWidth: 1,
                 fill: true
-            }]
+            },
+            {
+                label: "Median",
+                data: [],
+                borderColor: 'red',
+                borderWidth: 1,
+                pointRadius: 0,
+                fill: true
+            },
+            {
+                label: "Arithmetic Mean (μ)",
+                data: [],
+                borderColor: 'green',
+                borderWidth: 1,
+                pointRadius: 0,
+                fill: true
+            },
+            {
+                label: "Standard Deviation (σ)",
+                data: [],
+                borderColor: 'blue',
+                borderWidth: 1,
+                pointRadius: 0,
+                fill: true
+            },
+        ]
     },
     options: {
         scales: {
@@ -55,6 +86,8 @@ const chart = new Chart(mainChart, {
 });
 //Chart------------------------------------------------------------------//
 initEventListeners();
+//Load Chart from cookie
+rewrap();
 function initEventListeners() {
     //Init Navitems
     let navbar = $$(navitem_class);
@@ -99,7 +132,7 @@ function initEventListeners() {
         resetDialog(remSlider, remValBx, remCountLbl);
     });
     clearListBtn.addEventListener("click", function () {
-        valueListY = [];
+        changeValueList([]);
         rewrap();
     });
 }
@@ -137,9 +170,11 @@ function resetDialog(slider, valBx, countr) {
 }
 function addValueToList(value, count) {
     if (!isNaN(value) && value != "") {
+        let tempList = valueListY;
         for (let i = 0; i < count; i++) {
-            valueListY.push(value);
+            tempList.push(value);
         }
+        changeValueList(tempList);
         rewrap();
         return true;
     }
@@ -150,10 +185,12 @@ function addValueToList(value, count) {
 function removeValueFromList(value, count) {
     if (!isNaN(value)) {
         for (let i = 0; i < count; i++) {
-            const index = valueListY.indexOf(value);
+            let tempList = valueListY;
+            const index = tempList.indexOf(value);
             if (index > -1) {
-                valueListY.splice(index, 1);
+                tempList.splice(index, 1);
             }
+            changeValueList(tempList);
         }
         rewrap();
         return true;
@@ -177,6 +214,9 @@ function rewrapList() {
 function rewrapChart() {
     chart.data.labels = valueListX;
     chart.data.datasets[0].data = valueListY;
+    chart.data.datasets[1].data = getMedian(valueListY, valueListX.length);
+    chart.data.datasets[2].data = getArithmeticMean(valueListY, valueListX.length);
+    chart.data.datasets[3].data = getStandardDeviation(valueListY, valueListX.length);
     chart.update();
 }
 function setXValue() {
@@ -184,8 +224,35 @@ function setXValue() {
     for (let i = 0; i < valueListY.length; i++) {
         valueListX.push(i + 1);
     }
-    console.log(valueListX.length);
 }
+//Mathematical functions
+function getMedian(list, count) {
+    let liste = [];
+    for (let i = 0; i < count; i++) {
+        liste.push(50);
+    }
+    return liste;
+}
+function getArithmeticMean(list, count) {
+    let tempVal = 0;
+    for (let i = 0; i < list.length; i++) {
+        tempVal = tempVal + Number(list[i]);
+    }
+    //Create a temp list who has the lenght of the charts X-Value (so that it sizes correctly)
+    let liste = [];
+    for (let i = 0; i < count; i++) {
+        liste.push(tempVal / list.length);
+    }
+    return liste;
+}
+function getStandardDeviation(list, count) {
+    let liste = [];
+    for (let i = 0; i < count; i++) {
+        liste.push(70);
+    }
+    return liste;
+}
+//Mathematical functions
 //shortener for getElementBy -> anti boilerplate
 function $(input) {
     return document.getElementById(input);
@@ -194,4 +261,21 @@ function $$(input) {
     return document.getElementsByClassName(input);
 }
 //shortener for getElementBy -> anti boilerplate
+//Cookie functions
+function setCookie(name, value) {
+    document.cookie = name + "=" + value + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+//Cookie functions
 //# sourceMappingURL=script.js.map
