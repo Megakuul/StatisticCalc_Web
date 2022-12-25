@@ -39,11 +39,11 @@ const chart = new Chart(mainChart, {
                 fill: true
             },
             {
-                label: "Median",
+                label: "Median (η)",
                 data: [],
                 borderColor: 'red',
                 borderWidth: 1,
-                pointRadius: 0,
+                pointRadius: 1,
                 fill: true
             },
             {
@@ -51,15 +51,23 @@ const chart = new Chart(mainChart, {
                 data: [],
                 borderColor: 'green',
                 borderWidth: 1,
-                pointRadius: 0,
+                pointRadius: 1,
                 fill: true
             },
             {
-                label: "Standard Deviation (σ)",
+                label: "Standard Deviation (σ) population",
                 data: [],
-                borderColor: 'blue',
+                borderColor: 'rgb(0, 0, 102)',
                 borderWidth: 1,
-                pointRadius: 0,
+                pointRadius: 1,
+                fill: true
+            },
+            {
+                label: "Standard Deviation (σ) sample",
+                data: [],
+                borderColor: 'rgb(0, 0, 255)',
+                borderWidth: 1,
+                pointRadius: 1,
                 fill: true
             },
         ]
@@ -201,14 +209,17 @@ function removeValueFromList(value, count) {
 }
 function rewrap() {
     setXValue();
-    rewrapList();
+    rewrapList(valueListY);
     rewrapChart();
 }
-function rewrapList() {
-    let list = $("valueList");
-    list.innerHTML = "";
-    for (let i = 0; i < valueListY.length; i++) {
-        list.innerHTML += `<li class="${valueListY[i]}">${valueListY[i]}</li>`;
+function rewrapList(list) {
+    //Create copy of the Object, without this the list Object would be sorted in the global scope.
+    let liste = [...list];
+    liste.sort((a, b) => a - b);
+    let valueList = $("valueList");
+    valueList.innerHTML = "";
+    for (let i = 0; i < liste.length; i++) {
+        valueList.innerHTML += `<li class="${liste[i]}">${liste[i]}</li>`;
     }
 }
 function rewrapChart() {
@@ -216,7 +227,8 @@ function rewrapChart() {
     chart.data.datasets[0].data = valueListY;
     chart.data.datasets[1].data = getMedian(valueListY, valueListX.length);
     chart.data.datasets[2].data = getArithmeticMean(valueListY, valueListX.length);
-    chart.data.datasets[3].data = getStandardDeviation(valueListY, valueListX.length);
+    chart.data.datasets[3].data = getStandardDeviation(valueListY, valueListX.length, false);
+    chart.data.datasets[4].data = getStandardDeviation(valueListY, valueListX.length, true);
     chart.update();
 }
 function setXValue() {
@@ -227,30 +239,57 @@ function setXValue() {
 }
 //Mathematical functions
 function getMedian(list, count) {
-    let liste = [];
-    for (let i = 0; i < count; i++) {
-        liste.push(50);
+    //Create duplicate of list, without this we would sort the original list
+    let liste = [...list];
+    liste.sort((a, b) => a - b);
+    let tempVal = 0;
+    //check if number is odd with the modulo operator
+    if (liste.length % 2) {
+        //ungerade
+        let num = Math.floor(liste.length / 2);
+        tempVal = liste[num];
     }
-    return liste;
+    else {
+        let num1 = Math.floor(liste.length / 2);
+        let num2 = num1 - 1;
+        tempVal = (Number(liste[num1]) + Number(liste[num2])) / 2;
+    }
+    //Create a temp list who has the lenght of the charts X-Value (so that it sizes correctly)
+    let tempList = [];
+    for (let i = 0; i < count; i++) {
+        tempList.push(tempVal);
+    }
+    return tempList;
 }
 function getArithmeticMean(list, count) {
     let tempVal = 0;
     for (let i = 0; i < list.length; i++) {
-        tempVal = tempVal + Number(list[i]);
+        tempVal += Number(list[i]);
     }
     //Create a temp list who has the lenght of the charts X-Value (so that it sizes correctly)
-    let liste = [];
+    let tempList = [];
     for (let i = 0; i < count; i++) {
-        liste.push(tempVal / list.length);
+        tempList.push(tempVal / list.length);
     }
-    return liste;
+    return tempList;
 }
-function getStandardDeviation(list, count) {
-    let liste = [];
-    for (let i = 0; i < count; i++) {
-        liste.push(70);
+function getStandardDeviation(list, count, sample) {
+    let tempVal = 0;
+    let tempNum = 0;
+    const average = getArithmeticMean(list, 1)[0];
+    for (let i = 0; i < list.length; i++) {
+        tempNum += Number(Math.pow(list[i] - average, 2));
     }
-    return liste;
+    if (sample)
+        tempVal = Math.sqrt(tempNum / (list.length - 1));
+    else
+        tempVal = Math.sqrt(tempNum / list.length);
+    //Create a temp list who has the lenght of the charts X-Value (so that it sizes correctly)
+    let tempList = [];
+    for (let i = 0; i < count; i++) {
+        tempList.push(tempVal);
+    }
+    return tempList;
 }
 //Mathematical functions
 //shortener for getElementBy -> anti boilerplate
