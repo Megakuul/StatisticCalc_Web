@@ -317,4 +317,3 @@ function getCookie(name) {
     return null;
 }
 //Cookie functions
-//# sourceMappingURL=script.js.map
